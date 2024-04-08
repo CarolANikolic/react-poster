@@ -1,8 +1,10 @@
+import styles from '../PostItem/PostItem.module.css'
+
 const PostItem = (props) => {
     return (
-        <li>
-            <p>{props.author}</p>
-            <p>{props.content}</p>
+        <li className={styles.post}>
+            <p className={styles.author}>{props.author}</p>
+            <p className={styles.content}>{props.content}</p>
         </li>
     );
 }

@@ -1,0 +1,16 @@
+:root {
+    /* Colors */
+    --dark-purple: #543280;
+    --light-purple: #9c7eee;
+
+    /* Fonts */
+    --fs-small: 1.25rem;
+}
+
+html, 
+body, 
+ul {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
