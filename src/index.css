@@ -1,7 +1,13 @@
 :root {
     /* Colors */
-    --dark-purple: #543280;
+    --deep-purple: #34036c;
+    --bright-purple: #6233b9;
+    --dark-purple: #543280; 
     --light-purple: #9c7eee;
+    --extra-light-purple: #eadbfb;
+
+    --almost-black: #28262c;
+    --black: rgba(0, 0, 0, 0.2);
 
     /* Fonts */
     --fs-small: 1.25rem;
@@ -14,3 +20,9 @@ ul {
     margin: 0;
     padding: 0;
 }
+
+.root {
+    display: flex;
+    flex-direction: column;
+}
+

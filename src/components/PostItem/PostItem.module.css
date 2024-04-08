@@ -3,7 +3,7 @@
     padding: 1rem;
     background-color: var(--light-purple);
     border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 4px var(--black);
     animation: animate-in 1s ease-out forwards;
 }
 

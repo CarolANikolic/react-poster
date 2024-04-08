@@ -1,6 +1,8 @@
+import styles from './NewPost.module.css';
+
 const NewPost = () => {
     return (
-        <form>
+        <form className={styles.form}>
             <p>
                 <label htmlFor="body">Text</label>
                 <textarea 
