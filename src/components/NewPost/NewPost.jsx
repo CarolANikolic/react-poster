@@ -1,6 +1,6 @@
 import styles from './NewPost.module.css';
 
-const NewPost = () => {
+const NewPost = (props) => {
     return (
         <form className={styles.form}>
             <p>
@@ -8,7 +8,9 @@ const NewPost = () => {
                 <textarea 
                     id="body"
                     required
-                    rows={3}>
+                    rows={3}
+                    onChange={props.onTextChange}
+                    >
                 </textarea>
             </p>
             <p>
@@ -16,7 +18,8 @@ const NewPost = () => {
                 <input 
                     type="text" 
                     id="name"
-                    required>
+                    required
+                    onChange={props.onAuthorChange}>
                 </input>
             </p>
         </form>
