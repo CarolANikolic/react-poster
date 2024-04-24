@@ -1,3 +1,4 @@
+import Modal from "../Modal/Modal";
 import NewPost from "../NewPost/NewPost";
 import PostItem from "../PostItem/PostItem";
 import styles from '../PostList/PostList.module.css';
@@ -17,10 +18,13 @@ const PostList = () => {
 
     return (
         <>
-            <NewPost 
-                onAuthorChange={changeAuthor}
-                onTextChange={changeText} 
-            />
+            <Modal>
+                <NewPost 
+                    onAuthorChange={changeAuthor}
+                    onTextChange={changeText} 
+                />
+            </Modal>
+            
             <ul className={styles.posts}>
                 <PostItem 
                     onAuthorChange={enteredAuthor}
