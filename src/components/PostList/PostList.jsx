@@ -5,8 +5,13 @@ import styles from '../PostList/PostList.module.css';
 import { useState } from "react";
 
 const PostList = () => {
+    const [ isModalVisible, setModalVisibility ] = useState(true)
     const [ enteredText, setEnteredText ] = useState('');
     const [ enteredAuthor, setEnteredAuthor ] = useState('');
+
+    function modalVisibilityHandler () {
+        setModalVisibility(false)
+    }
 
     function changeText (event) {
         setEnteredText(event.target.value)
@@ -18,12 +23,14 @@ const PostList = () => {
 
     return (
         <>
-            <Modal>
-                <NewPost 
-                    onAuthorChange={changeAuthor}
-                    onTextChange={changeText} 
-                />
-            </Modal>
+            {isModalVisible && 
+                <Modal onClose={modalVisibilityHandler}>
+                    <NewPost 
+                        onAuthorChange={changeAuthor}
+                        onTextChange={changeText} 
+                    />
+                </Modal>
+            }
             
             <ul className={styles.posts}>
                 <PostItem 
