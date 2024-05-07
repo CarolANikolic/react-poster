@@ -19,10 +19,11 @@ const PostList = (props) => {
     return (
         <>
             {props.isPosting && 
-                <Modal onClose={props.onClose}>
+                <Modal onClose={props.onStopPosting}>
                     <NewPost 
                         onAuthorChange={changeAuthor}
-                        onTextChange={changeText} 
+                        onTextChange={changeText}
+                        onStopPosting={props.onStopPosting} 
                     />
                 </Modal>
             }

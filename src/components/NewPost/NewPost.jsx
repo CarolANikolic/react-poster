@@ -22,6 +22,14 @@ const NewPost = (props) => {
                     onChange={props.onAuthorChange}>
                 </input>
             </p>
+            <p className={styles.actions}>
+                <button 
+                    type="button"
+                    onClick={props.onStopPosting}>
+                    Cancel
+                </button>
+                <button>Submit</button>
+            </p>
         </form>
     );
 }
