@@ -1,7 +1,7 @@
 import styles from './NewPost.module.css';
 import { useState } from 'react';
 
-const NewPost = (props) => {
+const NewPost = ({ onCancel, onAddPost}) => {
     const [ enteredText, setEnteredText ] = useState('');
     const [ enteredAuthor, setEnteredAuthor ] = useState('');
 
@@ -19,7 +19,8 @@ const NewPost = (props) => {
             content: enteredText,
             author: enteredAuthor
         }
-        props.onStopPosting();
+        onAddPost(postData);
+        onCancel();
     }
 
     return (
@@ -46,7 +47,7 @@ const NewPost = (props) => {
             <p className={styles.actions}>
                 <button 
                     type="button"
-                    onClick={props.onStopPosting}>
+                    onClick={onCancel}>
                     Cancel
                 </button>
                 <button>Submit</button>
