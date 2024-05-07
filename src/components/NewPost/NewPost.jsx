@@ -1,15 +1,36 @@
 import styles from './NewPost.module.css';
+import { useState } from 'react';
 
 const NewPost = (props) => {
+    const [ enteredText, setEnteredText ] = useState('');
+    const [ enteredAuthor, setEnteredAuthor ] = useState('');
+
+    function changeText(event) {
+        setEnteredText(event.target.value)
+    }
+
+    function changeAuthor(event) {
+        setEnteredAuthor(event.target.value)
+    }
+
+    function submitPostHandler(event) {
+        event.preventDefault();
+        const postData = {
+            content: enteredText,
+            author: enteredAuthor
+        }
+        props.onStopPosting();
+    }
+
     return (
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={submitPostHandler}>
             <p>
                 <label htmlFor="body">Text</label>
                 <textarea 
                     id="body"
                     required
                     rows={3}
-                    onChange={props.onTextChange}
+                    onChange={changeText}
                     >
                 </textarea>
             </p>
@@ -19,7 +40,7 @@ const NewPost = (props) => {
                     type="text" 
                     id="name"
                     required
-                    onChange={props.onAuthorChange}>
+                    onChange={changeAuthor}>
                 </input>
             </p>
             <p className={styles.actions}>
