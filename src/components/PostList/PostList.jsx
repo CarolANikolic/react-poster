@@ -7,9 +7,16 @@ import { useState } from "react";
 const PostList = (props) => {
     const [posts, setPosts] = useState([]);
 
+    function addPostHandler(postData) {
+        fetch("http://localhost:8080/posts", {
+            method: "POST",
+            body: JSON.stringify(postData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
     // Use functional form when to set a new state (setState) depends on the current state (existingPosts).
     // This form gives you the most up-to-date status, even if it changes in process of updating the state, e.g., adding a new post to the list of existing posts.
-    function addPostHandler(postData) {
         setPosts((existingPosts) => [postData, ...existingPosts]);
     }
 
@@ -34,7 +41,7 @@ const PostList = (props) => {
                         />  
                     )}
                 </ul>)}
-                
+
             {posts.length === 0 && (
                 <div className={styles.noPost}>
                     <h2>There are no posts yet.</h2>
