@@ -9,3 +9,8 @@
     margin: 1rem auto;
     padding: 1rem 0;
 }
+
+.noPost {
+    text-align: center;
+    color: white;
+}

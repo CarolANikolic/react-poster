@@ -24,15 +24,23 @@ const PostList = (props) => {
                 </Modal>
             }
             
-            <ul className={styles.posts}>
-                {posts.map((post, index) => 
-                    <PostItem 
-                        key={index}
-                        author={post.author}
-                        text={post.content}
-                    />  
-                )}
-            </ul>
+            {posts.length > 0 && ( 
+                <ul className={styles.posts}>
+                    {posts.map((post, index) => 
+                        <PostItem 
+                            key={index}
+                            author={post.author}
+                            text={post.content}
+                        />  
+                    )}
+                </ul>)}
+                
+            {posts.length === 0 && (
+                <div className={styles.noPost}>
+                    <h2>There are no posts yet.</h2>
+                    <p>Start posting something!</p>
+                </div>
+            )}
         </>
     );
 }
