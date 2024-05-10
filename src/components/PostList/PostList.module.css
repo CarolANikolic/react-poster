@@ -10,7 +10,8 @@
     padding: 1rem 0;
 }
 
-.noPost {
+.noPost,
+.loadingPost {
     text-align: center;
     color: white;
 }

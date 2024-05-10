@@ -3,7 +3,7 @@ import PostList from "./components/PostList/PostList";
 import { useState } from "react";
 
 function App() {
-  const [ isModalVisible, setModalVisibility ] = useState(true)
+  const [ isModalVisible, setModalVisibility ] = useState(false)
 
   function hideModalHandler () {
     setModalVisibility(false);

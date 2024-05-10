@@ -6,12 +6,15 @@ import { useState, useEffect } from "react";
 
 const PostList = (props) => {
     const [posts, setPosts] = useState([]);
+    const [isFetching, setIsFetching] = useState(false)
 
     useEffect(() => {
         async function fetchPostsHandler() {
+            setIsFetching(true);
             const response = await fetch("http://localhost:8080/posts");
             const resData = await response.json();
             setPosts(resData.posts);
+            setIsFetching(false);
         }
 
         fetchPostsHandler();
@@ -41,7 +44,7 @@ const PostList = (props) => {
                 </Modal>
             }
             
-            {posts.length > 0 && ( 
+            {!isFetching && posts.length > 0 && ( 
                 <ul className={styles.posts}>
                     {posts.map((post, index) => 
                         <PostItem 
@@ -51,11 +54,17 @@ const PostList = (props) => {
                         />  
                     )}
                 </ul>)}
-
-            {posts.length === 0 && (
+            
+            {!isFetching && posts.length === 0 && (
                 <div className={styles.noPost}>
                     <h2>There are no posts yet.</h2>
                     <p>Start posting something!</p>
+                </div>
+            )}
+            
+            {isFetching && (
+                <div className={styles.loadingPost}>
+                    <p>Loading posts...</p>
                 </div>
             )}
         </>
