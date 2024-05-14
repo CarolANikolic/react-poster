@@ -1,23 +1,10 @@
 import PostItem from "../PostItem/PostItem";
-import styles from '../PostList/PostList.module.css';
-import { useState, useEffect } from "react";
+import styles from "../PostList/PostList.module.css";
+import { useLoaderData } from "react-router-dom";
 
 const PostList = () => {
-    const [posts, setPosts] = useState([]);
-    const [isFetching, setIsFetching] = useState(false)
-
-    useEffect(() => {
-        async function fetchPostsHandler() {
-            setIsFetching(true);
-            const response = await fetch("http://localhost:8080/posts");
-            const resData = await response.json();
-            setPosts(resData.posts);
-            setIsFetching(false);
-        }
-
-        fetchPostsHandler();
-    }, []);
-
+    const posts = useLoaderData();
+    
     function addPostHandler(postData) {
         fetch("http://localhost:8080/posts", {
             method: "POST",
@@ -33,7 +20,7 @@ const PostList = () => {
 
     return (
         <> 
-            {!isFetching && posts.length > 0 && ( 
+            {posts.length > 0 && ( 
                 <ul className={styles.posts}>
                     {posts.map((post, index) => 
                         <PostItem 
@@ -44,16 +31,10 @@ const PostList = () => {
                     )}
                 </ul>)}
             
-            {!isFetching && posts.length === 0 && (
+            {posts.length === 0 && (
                 <div className={styles.noPost}>
                     <h2>There are no posts yet.</h2>
                     <p>Start posting something!</p>
-                </div>
-            )}
-            
-            {isFetching && (
-                <div className={styles.loadingPost}>
-                    <p>Loading posts...</p>
                 </div>
             )}
         </>
