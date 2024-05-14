@@ -1,8 +1,9 @@
 import styles from './NewPost.module.css';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal';
 
-const NewPost = ({ onCancel, onAddPost}) => {
+const NewPost = ({onAddPost}) => {
     const [ enteredText, setEnteredText ] = useState('');
     const [ enteredAuthor, setEnteredAuthor ] = useState('');
 
@@ -47,11 +48,12 @@ const NewPost = ({ onCancel, onAddPost}) => {
                     </input>
                 </p>
                 <p className={styles.actions}>
-                    <button 
+                    <Link
+                        className={styles.cancelModal}
                         type="button"
-                        onClick={onCancel}>
+                        to="..">
                         Cancel
-                    </button>
+                    </Link>
                     <button>Submit</button>
                 </p>
             </form>
