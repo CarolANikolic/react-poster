@@ -1,41 +1,19 @@
 import styles from './NewPost.module.css';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Form, redirect } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal';
 
-const NewPost = ({onAddPost}) => {
-    const [ enteredText, setEnteredText ] = useState('');
-    const [ enteredAuthor, setEnteredAuthor ] = useState('');
-
-    function changeText(event) {
-        setEnteredText(event.target.value)
-    }
-
-    function changeAuthor(event) {
-        setEnteredAuthor(event.target.value)
-    }
-
-    function submitPostHandler(event) {
-        event.preventDefault();
-        const postData = {
-            content: enteredText,
-            author: enteredAuthor
-        }
-        onAddPost(postData);
-        onCancel();
-    }
+const NewPost = () => {
 
     return (
         <Modal>
-            <form className={styles.form} onSubmit={submitPostHandler}>
+            <Form method="post" className={styles.form}>
                 <p>
                     <label htmlFor="body">Text</label>
                     <textarea 
                         id="body"
+                        name="content"
                         required
-                        rows={3}
-                        onChange={changeText}
-                        >
+                        rows={3}>
                     </textarea>
                 </p>
                 <p>
@@ -43,8 +21,8 @@ const NewPost = ({onAddPost}) => {
                     <input 
                         type="text" 
                         id="name"
-                        required
-                        onChange={changeAuthor}>
+                        name="author"
+                        required>
                     </input>
                 </p>
                 <p className={styles.actions}>
@@ -56,9 +34,25 @@ const NewPost = ({onAddPost}) => {
                     </Link>
                     <button>Submit</button>
                 </p>
-            </form>
+            </Form>
         </Modal>
     );
 }
 
 export default NewPost
+
+// React Router Form automatically send the values entered on the Form (name content and author);
+// Form returns an object which can be accessed the method formData();
+export async function action({ request }) {
+    const formData = await request.formData();
+    const postData = Object.fromEntries(formData); // {content: '...', author: '...'}
+    const response = await fetch("http://localhost:8080/posts", {
+        method: "POST",
+        body: JSON.stringify(postData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+
+    return redirect("/");
+}

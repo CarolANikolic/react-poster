@@ -5,19 +5,6 @@ import { useLoaderData } from "react-router-dom";
 const PostList = () => {
     const posts = useLoaderData();
     
-    function addPostHandler(postData) {
-        fetch("http://localhost:8080/posts", {
-            method: "POST",
-            body: JSON.stringify(postData),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-    // Use functional form when to set a new state (setState) depends on the current state (existingPosts).
-    // This form gives you the most up-to-date status, even if it changes in process of updating the state, e.g., adding a new post to the list of existing posts.
-        setPosts((existingPosts) => [postData, ...existingPosts]);
-    }
-
     return (
         <> 
             {posts.length > 0 && ( 
