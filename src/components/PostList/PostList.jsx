@@ -14,6 +14,7 @@ const PostList = () => {
                             key={index}
                             author={post.author}
                             text={post.content}
+                            id={post.id}
                         />  
                     )}
                 </ul>)}
