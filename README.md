@@ -45,13 +45,13 @@ You will also need to download all the dependencies used in this project by usin
 npm install
 ```
 
-To run de project on your machine: 
-    (a) Open http://localhost:5173/ in your browser, and on the terminal use de following command:
+To run the project on your machine:  
+(a) Open http://localhost:5173/ in your browser, and on the terminal use de following command:
 ```
 npm run dev 
 ```
 
-    (b) Create a copy of the backend [react-poster-backend](https://github.com/CarolANikolic/react-poster-backend) in your machine, install all dependencies (npm install), and on the terminal use the following command:
+(b) Create a copy of the backend [react-poster-backend](https://github.com/CarolANikolic/react-poster-backend) in your machine, install all dependencies (npm install), and on the terminal use the following command:
 ```
 npm start 
 ```
