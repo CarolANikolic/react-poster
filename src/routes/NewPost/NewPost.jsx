@@ -41,7 +41,7 @@ const NewPost = () => {
 
 export default NewPost
 
-// React Router Form automatically send the values entered on the Form (name content and author);
+// React Router Form automatically send the values entered on the Form name (content and author);
 // Form returns an object which can be accessed the method formData();
 export async function action({ request }) {
     const formData = await request.formData();
