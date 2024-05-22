@@ -46,12 +46,12 @@ npm install
 ```
 
 To run de project on your machine: 
- (a) Open http://localhost:5173/ in your browser, and on the terminal use de following command:
+    (a) Open http://localhost:5173/ in your browser, and on the terminal use de following command:
 ```
 npm run dev 
 ```
 
- (b) Create a copy of the backend [react-poster-backend](https://github.com/CarolANikolic/react-poster-backend) in your machine, install all dependencies (npm install), and on the terminal use the following command:
+    (b) Create a copy of the backend [react-poster-backend](https://github.com/CarolANikolic/react-poster-backend) in your machine, install all dependencies (npm install), and on the terminal use the following command:
 ```
 npm start 
 ```
@@ -65,35 +65,35 @@ npm start
 
 ~~~
 const router = createBrowserRouter([
- { 
- path: '/', 
- element: <RootLayout/>,
- children: [
- { 
- path: '/', 
- element: <Posts/>,
- loader: postsLoader,
- children: [
- { 
- path: '/create-post', 
- element: <NewPost/>,
- action: newPostAction
- },
- {
- path: '/:postId',
- element: <PostDetails/>,
- loader: postDetailsLoader
- }
- ],
- },
- ]
- },
+  { 
+    path: '/', 
+    element: <RootLayout/>,
+    children: [
+      { 
+        path: '/', 
+        element: <Posts/>,
+        loader: postsLoader,
+        children: [
+          { 
+          path: '/create-post', 
+          element: <NewPost/>,
+          action: newPostAction
+          },
+          {
+            path: '/:postId',
+            element: <PostDetails/>,
+            loader: postDetailsLoader
+          }
+        ],
+      },
+    ]
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
- <React.StrictMode>
- <RouterProvider router={router}/>
- </React.StrictMode>,
+  <React.StrictMode>
+    <RouterProvider router={router}/>
+  </React.StrictMode>,
 )
 ~~~
 
@@ -105,18 +105,17 @@ import PostList from "../components/PostList/PostList";
 import { Outlet } from "react-router-dom";
 
 function Posts() {
- return (
- <>
- <main>
- <Outlet/>
- <PostList/>
- </main>
- </>
- )
+  return (
+    <>
+      <main>
+        <Outlet/>
+        <PostList/>
+      </main>
+    </>
+  )
 }
 
 export default Posts
-
 ~~~
 
 ### Use formData() to access the entered values in a Form
@@ -124,17 +123,17 @@ export default Posts
 
 ~~~
 export async function action({ request }) {
- const formData = await request.formData();
- const postData = Object.fromEntries(formData); // {content: '...', author: '...'}
- const response = await fetch("http://localhost:8080/posts", {
- method: "POST",
- body: JSON.stringify(postData),
- headers: {
- "Content-Type": "application/json"
- }
- });
+    const formData = await request.formData();
+    const postData = Object.fromEntries(formData); // {content: '...', author: '...'}
+    const response = await fetch("http://localhost:8080/posts", {
+        method: "POST",
+        body: JSON.stringify(postData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
 
- return redirect("/");
+    return redirect("/");
 }
 ~~~
 
